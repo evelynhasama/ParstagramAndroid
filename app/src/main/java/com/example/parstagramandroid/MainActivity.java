@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         etDescription = findViewById(R.id.etDescription);
         ivPostImage = findViewById(R.id.ivPostImage);
 
-        //queryPosts();
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,24 +201,6 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void queryPosts(){
-        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-        query.include(Post.KEY_USER);
-        query.findInBackground(new FindCallback<Post>() {
-            @Override
-            public void done(List<Post> posts, ParseException e) {
-                if (e != null) {
-                    Log.e(TAG, "Issue with getting posts", e);
-                    return;
-                } else {
-                    for (Post post: posts){
-                        Log.i(TAG, "Post: " + post.getDescription()+ ", username: "+ post.getUser().getUsername());
-                    }
-                }
-            }
-        });
     }
 
 }

@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         if (ParseUser.getCurrentUser() != null){
-            goMainActivity();
+            goFeedActivity();
         }
 
         etPassword = findViewById(R.id.etPassword);
@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 // navigate to main activity if user has signed in properly
-                goMainActivity();
+                goFeedActivity();
                 Toast.makeText(LoginActivity.this, "Successfully logged in!", Toast.LENGTH_LONG).show();
             }
         });
@@ -84,14 +84,14 @@ public class LoginActivity extends AppCompatActivity {
                     Log.e(TAG, "Issue with sign up", e);
                     return;
                 }
-                goMainActivity();
+                goFeedActivity();
                 Toast.makeText(LoginActivity.this, "Successfully signed up!", Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    private void goMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
+    private void goFeedActivity(){
+        Intent intent = new Intent(this, FeedActivity.class);
         startActivity(intent);
         finish();
     }
