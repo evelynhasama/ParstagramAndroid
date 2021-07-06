@@ -18,6 +18,10 @@ import com.parse.SignUpCallback;
 public class LoginActivity extends AppCompatActivity {
 
     public static final String TAG = "LoginActivity";
+    public static final String FAILED_SIGNUP_TOAST = "Unable to sign up";
+    public static final String SUCCESS_SIGNUP_TOAST = "Successfully signed up";
+    public static final String FAILED_LOGIN_TOAST = "Invalid login credentials";
+    public static final String SUCCESS_LOGIN_TOAST = "Successfully logged in";
     private EditText etUsername;
     private EditText etPassword;
     private Button btnLogin;
@@ -62,13 +66,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if (e != null) {
-                    Toast.makeText(LoginActivity.this, "Invalid login", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, FAILED_LOGIN_TOAST, Toast.LENGTH_LONG).show();
                     Log.e(TAG, "Issue with login", e);
                     return;
                 }
                 // navigate to main activity if user has signed in properly
                 goFeedActivity();
-                Toast.makeText(LoginActivity.this, "Successfully logged in!", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, SUCCESS_LOGIN_TOAST, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -80,12 +84,12 @@ public class LoginActivity extends AppCompatActivity {
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
                 if (e != null) {
-                    Toast.makeText(LoginActivity.this, "Unable to sign up", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, FAILED_SIGNUP_TOAST, Toast.LENGTH_LONG).show();
                     Log.e(TAG, "Issue with sign up", e);
                     return;
                 }
                 goFeedActivity();
-                Toast.makeText(LoginActivity.this, "Successfully signed up!", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, SUCCESS_SIGNUP_TOAST, Toast.LENGTH_LONG).show();
             }
         });
     }

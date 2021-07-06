@@ -36,6 +36,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
+    public static final String EMPTY_DESCRIPTION_TOAST = "Description cannot be empty";
+    public static final String NO_PHOTO_TOAST = "There is no image";
+    public static final String FAILED_PHOTO_TOAST = "Image failed";
+    public static final String ERROR_SAVING_TOAST = "Error while saving!";
 
     Button btnSubmit;
     Button btnCaptureImage;
@@ -69,11 +73,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String description = etDescription.getText().toString();
                 if (description.isEmpty()){
-                    Toast.makeText(MainActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, EMPTY_DESCRIPTION_TOAST, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (photoFile == null || ivPostImage.getDrawable() == null){
-                    Toast.makeText(MainActivity.this, "There is no image", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, NO_PHOTO_TOAST, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
@@ -93,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 // Load the taken image into a preview
                 ivPostImage.setImageBitmap(takenImage);
             } else { // Result was a failure
-                Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, FAILED_PHOTO_TOAST, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -174,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if (e != null){
                     Log.e(TAG, "Error while saving", e);
-                    Toast.makeText(MainActivity.this, "Error while saving!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, ERROR_SAVING_TOAST, Toast.LENGTH_SHORT).show();
                 }
                 Log.i(TAG, "Post save was successful");
                 etDescription.setText("");
