@@ -2,6 +2,7 @@ package com.example.parstagramandroid;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -55,12 +58,17 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvUsername;
         private ImageView ivImage;
         private TextView tvDescription;
+        private ImageView ivProfileImage;
+        private TextView tvLikes;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvUsername = itemView.findViewById(R.id.tvUsername);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
+            ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
+            tvLikes = itemView.findViewById(R.id.tvLikes);
+
 
             itemView.setOnClickListener(this);
         }
@@ -73,6 +81,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
             }
+            tvLikes.setText(String.valueOf(post.getLikes()));
+            Glide.with(context).load(R.drawable.instagram_user_filled_24).circleCrop().into(ivProfileImage);
         }
 
         @Override
