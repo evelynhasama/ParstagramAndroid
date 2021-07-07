@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">ParstagramAndroid</string>
     <string name="log_in">Log in</string>
-    <string name="sign_up">Sign up</string>
+    <string name="sign_up">Sign Up</string>
     <string name="description">Description...</string>
     <string name="take_picture">Take picture</string>
     <string name="submit">Submit</string>
-    <string name="password">password</string>
-    <string name="username">username</string>
+    <string name="Password">password</string>
+    <string name="Username">username</string>
+    <string name="no_acct">Don\'t have an account?</string>
 </resources>

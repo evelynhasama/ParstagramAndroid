@@ -15,19 +15,19 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:hint="@string/password"
+        android:hint="@string/Password"
         android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
-        android:hint="@string/username"
+        android:hint="@string/Username"
         android:inputType="textPersonName" />
 
     <Button
@@ -38,18 +38,39 @@
         android:layout_alignParentStart="true"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#29B6F6"
+        android:backgroundTint="#64B5F6"
         android:text="@string/log_in" />
 
-    <Button
-        android:id="@+id/btnSignUp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="200dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        app:srcCompat="@drawable/nav_logo_whiteout" />
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnLogin"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#66BB6A"
-        android:text="@string/sign_up" />
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/no_acct" />
+
+    <TextView
+        android:id="@+id/tvSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLogin"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/textView"
+        android:text="@string/sign_up"
+        android:textColor="#64B5F6" />
 </RelativeLayout>
