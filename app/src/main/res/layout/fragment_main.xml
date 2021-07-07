@@ -7,22 +7,13 @@
     android:orientation="vertical"
     tools:context=".MainFragment">
 
-    <EditText
-        android:id="@+id/etDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="@string/description" />
-
     <Button
         android:id="@+id/btnCaptureImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#29B6F6"
+        android:backgroundTint="@color/med_blue"
         android:text="@string/take_picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,12 +27,21 @@
         android:layout_marginTop="10dp"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="@string/description" />
+
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="10dp"
-        android:backgroundTint="#29B6F6"
+        android:backgroundTint="@color/med_blue"
         android:text="@string/submit" />
 </LinearLayout>

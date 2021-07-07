@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -68,6 +69,8 @@ public class MainFragment extends Fragment {
         btnSubmit = view.findViewById(R.id.btnSubmit);
         etDescription = view.findViewById(R.id.etDescription);
         ivPostImage = view.findViewById(R.id.ivPostImage);
+
+        Glide.with(view).load(R.drawable.photo_placeholder).into(ivPostImage);
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,7 +195,7 @@ public class MainFragment extends Fragment {
                 }
                 Log.i(TAG, "Post save was successful");
                 etDescription.setText("");
-                ivPostImage.setImageResource(0);
+                Glide.with(view).load(R.drawable.photo_placeholder).into(ivPostImage);
             }
         });
     }
