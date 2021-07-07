@@ -27,8 +27,6 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
             case 1:
                 return new MainFragment();
             case 2:
-                return new SearchFragment();
-            case 3:
                 return new ProfileFragment();
             default:
                 return new ProfileFragment();
@@ -37,6 +35,6 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 3;
     }
 }

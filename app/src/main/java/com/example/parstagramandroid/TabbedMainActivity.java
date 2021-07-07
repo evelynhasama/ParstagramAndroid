@@ -2,18 +2,17 @@ package com.example.parstagramandroid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.ParseUser;
 
-import org.jetbrains.annotations.NotNull;
 
 public class TabbedMainActivity extends AppCompatActivity {
     public static final String TAG = "TabbedMainActivity";
@@ -23,28 +22,40 @@ public class TabbedMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed_main);
 
-        TabLayout tabLayout = findViewById(R.id.tabLayout);
-        ViewPager2 viewPager2 = findViewById(R.id.viewPager);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(this);
-        viewPager2.setAdapter(adapter);
+        final FragmentManager fragmentManager = getSupportFragmentManager();
 
-        new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
-            @Override
-            public void onConfigureTab(@NonNull @NotNull TabLayout.Tab tab, int position) {
-                if (position == 0){
-                    tab.setIcon(R.drawable.instagram_home_outline_24);
-                } else if (position == 1){
-                    tab.setIcon(R.drawable.instagram_new_post_outline_24);
-                } else if (position == 2){
-                    tab.setIcon(android.R.drawable.ic_menu_search);
-                } else {
-                    tab.setIcon(R.drawable.instagram_user_outline_24);
-                }
+        // define your fragments here
+        final Fragment fragment1 = new FeedFragment();
+        final Fragment fragment2 = new MainFragment();
+        final Fragment fragment3 = new ProfileFragment();
 
+        // handle navigation selection
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        Fragment fragment;
+                        switch (item.getItemId()) {
+                            case R.id.action_feed:
+                                fragment = fragment1;
+                                break;
+                            case R.id.action_post:
+                                fragment = fragment2;
+                                break;
+                            case R.id.action_profile:
+                            default:
+                                fragment = fragment3;
+                                break;
+                        }
+                        fragmentManager.beginTransaction().replace(R.id.fragContainer, fragment).commit();
+                        return true;
+                    }
+                });
+        // Set default selection
+        bottomNavigationView.setSelectedItemId(R.id.action_feed);
 
-            }
-        }).attach();
     }
 
     @Override
