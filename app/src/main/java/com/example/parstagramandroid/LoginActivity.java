@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -96,8 +97,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goFeedActivity(){
-        Intent intent = new Intent(this, FeedActivity.class);
+        Intent intent = new Intent(this, TabbedMainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // inflate menu
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setIcon(R.drawable.nav_logo_whiteout);
+        return true;
     }
 }

@@ -21,8 +21,8 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.ParstagramAndroid">
-        <activity android:name=".PostDetailsActivity"></activity>
-        <activity android:name=".FeedActivity" />
+        <activity android:name=".TabbedMainActivity"></activity>
+        <activity android:name=".PostDetailsActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -41,7 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+
     </application>
 
 </manifest>

@@ -2,15 +2,15 @@
     <!-- Base application theme. -->
     <style name="Theme.ParstagramAndroid" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#add8e6</item>
-        <item name="colorPrimaryVariant">#53A2BE</item>
+        <item name="colorPrimary">@color/light_blue</item>
+        <item name="colorPrimaryVariant">@color/med_blue</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#0A2239</item>
-        <item name="colorSecondaryVariant">#176087</item>
+        <item name="colorSecondary">@color/darkest_blue</item>
+        <item name="colorSecondaryVariant">@color/dark_blue</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
