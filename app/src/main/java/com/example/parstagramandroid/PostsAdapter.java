@@ -16,12 +16,14 @@ import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
 
 import org.w3c.dom.Text;
+import org.w3c.dom.UserDataHandler;
 
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
     public static final String POST_ID_EXTRA = "postId";
+    public static final String USER_EXTRA = "user";
     private Context context;
     private List<Post> posts;
 
@@ -83,7 +85,16 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 Glide.with(context).load(image.getUrl()).into(ivImage);
             }
             tvLikes.setText(String.valueOf(post.getLikes()));
-            Glide.with(context).load(R.drawable.instagram_user_filled_24).circleCrop().into(ivProfileImage);
+            Glide.with(context).load(R.drawable.photo_placeholder).circleCrop().into(ivProfileImage);
+
+            ivProfileImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, ProfileActivity.class);
+                    intent.putExtra(USER_EXTRA, post.getUser());
+                    context.startActivity(intent);
+                }
+            });
         }
 
         @Override

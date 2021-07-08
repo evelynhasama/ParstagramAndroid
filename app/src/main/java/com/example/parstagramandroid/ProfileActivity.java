@@ -1,18 +1,12 @@
 package com.example.parstagramandroid;
 
-import android.media.Image;
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,66 +19,44 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ProfileFragment extends Fragment {
+public class ProfileActivity extends AppCompatActivity {
 
-    public static final String TAG = "ProfileFragment";
+    public static final String TAG = "ProfileActivity";
     public static final String CREATED_AT = "createdAt";
     public static final String PARSEUSER_BIO_KEY = "bio";
+    public static final String USER_KEY = "user";
 
     RecyclerView rvUserPosts;
     TextView tvBio;
     TextView tvUser;
     ImageView ivPfP;
-    View view;
     List<Post> userPosts;
     ProfilePostsAdapter adapter;
 
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
-
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_profile);
 
-    }
+        ParseUser user = getIntent().getParcelableExtra(USER_KEY);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        ParseUser user = ParseUser.getCurrentUser();
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_profile, container, false);
-
-        rvUserPosts = view.findViewById(R.id.rvUserPosts);
-        tvBio = view.findViewById(R.id.tvBio);
-        tvUser = view.findViewById(R.id.tvUser);
-        ivPfP = view.findViewById(R.id.ivPfP);
-        Glide.with(view).load(R.drawable.photo_placeholder).circleCrop().into(ivPfP);
+        rvUserPosts = findViewById(R.id.rvUserPostsAct);
+        tvBio = findViewById(R.id.tvBioAct);
+        tvUser = findViewById(R.id.tvUserAct);
+        ivPfP = findViewById(R.id.ivPfPAct);
+        Glide.with(ProfileActivity.this).load(R.drawable.photo_placeholder).circleCrop().into(ivPfP);
 
         tvBio.setText(user.getString(PARSEUSER_BIO_KEY));
         tvUser.setText(user.getUsername());
 
         userPosts = new ArrayList<>();
-        adapter = new ProfilePostsAdapter(getActivity(),userPosts);
+        adapter = new ProfilePostsAdapter(ProfileActivity.this,userPosts);
         // set the adapter on the recycler view
         rvUserPosts.setAdapter(adapter);
         // set the layout manager on the recycler view
-        rvUserPosts.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        rvUserPosts.setLayoutManager(new GridLayoutManager(ProfileActivity.this, 3));
         // query user's posts from Parstagram
         queryUserPosts(user);
-
-        return view;
     }
 
     private void queryUserPosts(ParseUser user) {
