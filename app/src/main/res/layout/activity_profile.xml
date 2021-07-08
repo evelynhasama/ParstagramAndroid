@@ -39,7 +39,7 @@
         android:layout_below="@+id/tvUserAct"
         android:layout_alignParentStart="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         tools:text="placeholder bio" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -49,6 +49,6 @@
         android:layout_below="@+id/tvBioAct"
         android:layout_alignParentStart="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="5dp" />
 
 </RelativeLayout>
