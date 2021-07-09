@@ -3,6 +3,7 @@ package com.example.parstagramandroid;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import org.w3c.dom.Text;
 import org.w3c.dom.UserDataHandler;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
@@ -64,6 +69,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvDescription;
         private ImageView ivProfileImage;
         private TextView tvLikes;
+        private ImageView ivLike;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,7 +78,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvDescription = itemView.findViewById(R.id.tvDescription);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvLikes = itemView.findViewById(R.id.tvLikes);
-
+            ivLike = itemView.findViewById(R.id.ivLikeHeart);
 
             itemView.setOnClickListener(this);
         }
@@ -85,7 +91,17 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
             }
-            tvLikes.setText(String.valueOf(post.getLikes()));
+            int likeCount = post.getLikes();
+            tvLikes.setText(String.valueOf(likeCount));
+
+            List<String> likers = post.getLikers();
+            if (likers != null && likers.contains(ParseUser.getCurrentUser().getObjectId())) {
+                // if the user likes the image
+                Glide.with(context).load(R.drawable.ufi_heart_active).into(ivLike);
+            } else {
+                Glide.with(context).load(R.drawable.ufi_heart).into(ivLike);
+            }
+
             ParseFile profileImage = post.getUser().getParseFile(PARSEUSER_PICTURE_KEY);
             if (profileImage == null){
                 Glide.with(context).load(R.drawable.photo_placeholder).circleCrop().into(ivProfileImage);

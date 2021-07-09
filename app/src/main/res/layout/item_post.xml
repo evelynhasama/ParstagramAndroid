@@ -73,12 +73,13 @@
 
     <ImageView
         android:id="@+id/ivLikeHeart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_below="@+id/ivImage"
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:clickable="false"
         app:srcCompat="@drawable/ufi_heart_icon" />
 
     <TextView

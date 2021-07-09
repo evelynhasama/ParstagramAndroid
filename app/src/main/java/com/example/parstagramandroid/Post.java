@@ -8,6 +8,7 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.util.Date;
+import java.util.List;
 
 @ParseClassName("Post")
 public class Post extends ParseObject {
@@ -20,6 +21,7 @@ public class Post extends ParseObject {
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
     public static final String KEY_LIKES = "likes";
+    public static final String KEY_LIKERS = "likers";
 
     public String getDescription(){
         return getString(KEY_DESCRIPTION);
@@ -48,6 +50,19 @@ public class Post extends ParseObject {
     public int getLikes(){
         return getInt(KEY_LIKES);
     }
+
+    public void setLikes(int likes){
+        put(KEY_LIKES, likes);
+    }
+
+    public List<String> getLikers(){
+        return getList(KEY_LIKERS);
+    }
+
+    public void setLikers(List<String> likers){
+        put(KEY_LIKERS, likers);
+    }
+
 
     public static String calculateTimeAgo(Date createdAt) {
 
