@@ -98,7 +98,7 @@ public class ProfileFragment extends Fragment {
                 EditText etUsernameEdit = messageView.findViewById(R.id.etUsernameEdit);
                 EditText etBioEdit = messageView.findViewById(R.id.etBioEdit);
 
-                etBioEdit.setText(user.getString("bio"), TextView.BufferType.EDITABLE);
+                etBioEdit.setText(user.getString(PARSEUSER_BIO_KEY), TextView.BufferType.EDITABLE);
                 etUsernameEdit.setText(user.getUsername(), TextView.BufferType.EDITABLE);
 
                 // Configure dialog button
@@ -115,8 +115,8 @@ public class ProfileFragment extends Fragment {
                                     Toast.makeText(getContext(), "Username is required", Toast.LENGTH_SHORT);
                                 } else {
                                     alertDialog.cancel();
-                                    user.put("username", username);
-                                    user.put("bio", bio);
+                                    user.setUsername(username);
+                                    user.put(PARSEUSER_BIO_KEY, bio);
                                     user.saveInBackground(new SaveCallback() {
                                         @Override
                                         public void done(ParseException e) {
