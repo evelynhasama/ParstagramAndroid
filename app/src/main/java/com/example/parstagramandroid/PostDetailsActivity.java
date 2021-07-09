@@ -89,8 +89,6 @@ public class PostDetailsActivity extends AppCompatActivity {
                 tvLikeCount.setText(String.valueOf(likeCount));
 
                 likers = post.getLikers();
-                Log.d(TAG, "likers: " + likers.toString());
-                Log.d(TAG, "me: " + ParseUser.getCurrentUser().getObjectId().toString());
                 if (likers != null) {
                     if (likers.contains(ParseUser.getCurrentUser().getObjectId())) {
                         Glide.with(PostDetailsActivity.this).load(R.drawable.ufi_heart_active).into(ivLike);
