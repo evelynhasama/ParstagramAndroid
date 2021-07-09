@@ -8,4 +8,6 @@
     <string name="Password">password</string>
     <string name="Username">username</string>
     <string name="no_acct">Don\'t have an account?</string>
+    <string name="Bio">bio...</string>
+    <string name="edit_profile_information">Edit Profile Information</string>
 </resources>

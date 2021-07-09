@@ -25,6 +25,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     TextView tvTimestamp;
     ImageView ivLike;
     ImageView ivPostPic;
+    ImageView ivProfPic;
     Post post;
 
     @Override
@@ -41,6 +42,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         tvTimestamp = findViewById(R.id.tvTimestamp);
         ivLike = findViewById(R.id.ivLike);
         ivPostPic = findViewById(R.id.ivPostPic);
+        ivProfPic = findViewById(R.id.ivProfPic);
         tvUserhandle = findViewById(R.id.tvUserhandle);
     }
 
@@ -54,6 +56,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                 Date createdAt = post.getCreatedAt();
                 String timeAgo = Post.calculateTimeAgo(createdAt);
                 tvTimestamp.setText(timeAgo);
+                Glide.with(PostDetailsActivity.this).load(R.drawable.photo_placeholder).circleCrop().into(ivProfPic);
                 ParseFile image = post.getImage();
                 if (image != null) {
                     Glide.with(PostDetailsActivity.this).load(image.getUrl()).into(ivPostPic);
