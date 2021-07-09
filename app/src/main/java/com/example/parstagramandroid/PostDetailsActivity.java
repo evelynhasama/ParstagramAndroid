@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -110,7 +111,6 @@ public class PostDetailsActivity extends AppCompatActivity {
     }
 
     public boolean setLiked(Boolean likedBool){
-        int change;
         if (likedBool) {
             Glide.with(PostDetailsActivity.this).load(R.drawable.ufi_heart_active).into(ivLike);
             likers.add(ParseUser.getCurrentUser().getObjectId());
@@ -129,6 +129,16 @@ public class PostDetailsActivity extends AppCompatActivity {
             }
         });
         return likedBool;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // inflate menu
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setIcon(R.drawable.nav_logo_whiteout);
+        return true;
     }
 
 }

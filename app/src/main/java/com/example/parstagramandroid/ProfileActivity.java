@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -90,5 +91,15 @@ public class ProfileActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // inflate menu
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setIcon(R.drawable.nav_logo_whiteout);
+        return true;
     }
 }
