@@ -19,6 +19,7 @@ public class PostDetailsActivity extends AppCompatActivity {
 
     public static final String POST_ID_EXTRA = "postId";
     public static final String TAG = "PostDetailsActivity";
+    public static final String PARSEUSER_PICTURE_KEY = "picture";
     TextView tvUserhandle;
     TextView tvCaption;
     TextView tvLikeCount;
@@ -56,7 +57,12 @@ public class PostDetailsActivity extends AppCompatActivity {
                 Date createdAt = post.getCreatedAt();
                 String timeAgo = Post.calculateTimeAgo(createdAt);
                 tvTimestamp.setText(timeAgo);
-                Glide.with(PostDetailsActivity.this).load(R.drawable.photo_placeholder).circleCrop().into(ivProfPic);
+                ParseFile profileImage = post.getUser().getParseFile(PARSEUSER_PICTURE_KEY);
+                if (profileImage == null){
+                    Glide.with(PostDetailsActivity.this).load(R.drawable.photo_placeholder).circleCrop().into(ivProfPic);
+                } else {
+                    Glide.with(PostDetailsActivity.this).load(profileImage.getUrl()).circleCrop().into(ivProfPic);
+                }
                 ParseFile image = post.getImage();
                 if (image != null) {
                     Glide.with(PostDetailsActivity.this).load(image.getUrl()).into(ivPostPic);

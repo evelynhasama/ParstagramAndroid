@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -22,6 +23,7 @@ import java.util.List;
 public class ProfileActivity extends AppCompatActivity {
 
     public static final String TAG = "ProfileActivity";
+    public static final String PARSEUSER_PICTURE_KEY = "picture";
     public static final String CREATED_AT = "createdAt";
     public static final String PARSEUSER_BIO_KEY = "bio";
     public static final String USER_KEY = "user";
@@ -44,7 +46,14 @@ public class ProfileActivity extends AppCompatActivity {
         tvBio = findViewById(R.id.tvBioAct);
         tvUser = findViewById(R.id.tvUserAct);
         ivPfP = findViewById(R.id.ivPfPAct);
-        Glide.with(ProfileActivity.this).load(R.drawable.photo_placeholder).circleCrop().into(ivPfP);
+
+        ParseFile profileImage = user.getParseFile(PARSEUSER_PICTURE_KEY);
+        if (profileImage == null){
+            Glide.with(ProfileActivity.this).load(R.drawable.photo_placeholder).circleCrop().into(ivPfP);
+        } else {
+            Glide.with(ProfileActivity.this).load(profileImage.getUrl()).circleCrop().into(ivPfP);
+        }
+
 
         tvBio.setText(user.getString(PARSEUSER_BIO_KEY));
         tvUser.setText(user.getUsername());

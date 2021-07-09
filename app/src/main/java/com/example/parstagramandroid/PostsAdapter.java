@@ -23,6 +23,7 @@ import java.util.List;
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
     public static final String POST_ID_EXTRA = "postId";
+    public static final String PARSEUSER_PICTURE_KEY = "picture";
     public static final String USER_EXTRA = "user";
     private Context context;
     private List<Post> posts;
@@ -85,7 +86,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 Glide.with(context).load(image.getUrl()).into(ivImage);
             }
             tvLikes.setText(String.valueOf(post.getLikes()));
-            Glide.with(context).load(R.drawable.photo_placeholder).circleCrop().into(ivProfileImage);
+            ParseFile profileImage = post.getUser().getParseFile(PARSEUSER_PICTURE_KEY);
+            if (profileImage == null){
+                Glide.with(context).load(R.drawable.photo_placeholder).circleCrop().into(ivProfileImage);
+            } else {
+                Glide.with(context).load(profileImage.getUrl()).circleCrop().into(ivProfileImage);
+            }
 
             ivProfileImage.setOnClickListener(new View.OnClickListener() {
                 @Override

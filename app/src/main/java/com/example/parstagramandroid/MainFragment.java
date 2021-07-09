@@ -49,7 +49,7 @@ public class MainFragment extends Fragment {
 
     public final String APP_TAG = "MyCustomApp";
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 79;
-    public String photoFileName = "photo.jpg";
+    public final static String photoFileName = "photo.jpg";
     File photoFile;
     View view;
 
